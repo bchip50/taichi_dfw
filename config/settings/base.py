@@ -67,6 +67,10 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    "phone_field",
+    "django_google_maps",
+    "taggit",
+    "taggit_templatetags2",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -78,6 +82,9 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "taichi_dfw.users",
+    "taichi_dfw.styles",
+    "taichi_dfw.locations",
+    "taichi_dfw.resources",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -181,6 +188,8 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
+                "taichi_dfw.styles.context_processors.style_menu",
+                "taichi_dfw.styles.context_processors.resource_menu",
                 "taichi_dfw.users.context_processors.allauth_settings",
             ],
         },
@@ -274,4 +283,8 @@ SOCIALACCOUNT_FORMS = {"signup": "taichi_dfw.users.forms.UserSocialSignupForm"}
 
 
 # Your stuff...
+GOOGLE_MAPS_API_KEY = "AIzaSyBLDpTM3c50sCj3Pw4Yo7Giju-adzTBbbE"
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1000
+# Tags
+TAGGIT_CASE_INSENSITIVE = True
 # ------------------------------------------------------------------------------

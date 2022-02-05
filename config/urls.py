@@ -16,6 +16,8 @@ urlpatterns = [
     path("users/", include("taichi_dfw.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("styles/", include("taichi_dfw.styles.urls", namespace="styles")),
+    path("resources/", include("taichi_dfw.resources.urls", namespace="resources")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

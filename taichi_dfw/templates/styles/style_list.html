@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}List of Styles{% endblock %}
+
+{% block content %}
+  <h2>Styles List</h2>
+<div class="container">
+  <ul>
+    {%  for style in style_list %}
+      <li><a href="#TODO">{{ style.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- End Action buttons -->
+
+{% endblock content %}

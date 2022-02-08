@@ -32,25 +32,14 @@ class StyleDetailView(ActiveSeriesMixin, DetailView):
 style_detail_view = StyleDetailView.as_view()
 
 
-class ActiveLeadersMixin:
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        actl = context["series"]
-        context["active_leaders"] = actl.seriesMembers.filter(leader_is=True)
-        context["active_members"] = actl.seriesMembers.filter(
-            active_is=True, leader_is=False
-        )
-        return context
-
-
-class SeriesDetailView(ActiveLeadersMixin, DetailView):
+class SeriesDetailView(DetailView):
     model = Series
 
 
 series_detail_view = SeriesDetailView.as_view()
 
 
-class MeetingDetailView(ActiveLeadersMixin, DetailView):
+class MeetingDetailView(DetailView):
     model = Meeting
 
 

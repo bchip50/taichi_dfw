@@ -46,6 +46,12 @@ class Location(LifecycleModelMixin, TimeStampedModel, LocContact, Gmaps, models.
     city = models.CharField("City", max_length=50, blank=True)
     state = models.CharField("State", max_length=2, default="Tx")
     zipcode = models.CharField("Zip code", max_length=5, blank=True)
+    website = models.URLField(
+        "Location Web site",
+        blank=True,
+        null=True,
+        help_text="Optional web site of the location.",
+    )
 
     def __str__(self):
         return f"{self.title} in {self.city}"

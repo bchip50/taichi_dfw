@@ -26,10 +26,10 @@
           <li class="col-sm-9"><a href="{% url 'styles:series-detail' ser.slug %}" >
             {{ ser.title }}</a> with {{ ser.memberCount }} members.</li>
 
-          {% if ser.leaders %}
+          {% if ser.activeLeaders %}
           <ul>
-            {% for ldr in ser.leaders %}
-              <li class="col-sm-3">{{ ldr.name }}</li>
+            {% for ldr in ser.activeLeaders %}
+              <li class="col-sm-3">{{ ldr.member.name }}</li>
             {% endfor %}
           </ul>
           {% endif %}

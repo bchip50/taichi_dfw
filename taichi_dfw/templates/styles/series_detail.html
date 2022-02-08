@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container">
-  <div class="col-sm-12">
+  <div class="">
     <h2>{{ object.title }}</h2>
     {% if object.description %}
       <p>{{ object.description }}</p>
@@ -19,26 +19,27 @@
         <p>Contact one of the leaders listed below for permission to join.</p>
         {% endif %}
     {% endif %}
-    {% if object.leaders %}
+    {% if object.activeLeaders %}
       <p>Leaders or Instructors:</p>
       <ul>
-        {% for ldr in object.leaders.all %}
-          <li>
-            <span col-sm-3>{{ ldr.name}}</span>
-            <span col-sm-6>{{ ldr.email}}</span>
-            <span col-sm-3>{{ ldr.since|date: "SHORT_DATE_FORMAT" }}</span>
+        {% for ldr in object.activeLeaders %}
+          <li class="row" >
+            <span class="col-sm-3">{{ ldr.member.name}}</span>
+            <span class="col-sm-3">{{ ldr.member.email}}</span>
+            <span class="col-sm-6"> since {{ ldr.since}}</span>
           </li>
        {% endfor %}
       </ul>
     {% endif %}
-    {% if object.members %}
+    {% if object.activeMembers %}
       <p>Members:</p>
       <ul>
-        {% for mbr in object.members.all %}
+        {% for mbr in object.activeMembers %}
           <li>
-            <span col-sm-3>{{ mbr.name}}</span>
-            <span col-sm-6>{{ mbr.email}}</span>
-            <span col-sm-3>{{ mbr.last_meeting|date: "SHORT_DATE_FORMAT" }}</span>
+            <span >{{ mbr.member.name}}</span>
+            {% if  mbr.last_meeting %}
+              <span>Last Meeting: {{ mbr.last_meeting }}</span>
+            {% endif %}
           </li>
        {% endfor %}
       </ul>

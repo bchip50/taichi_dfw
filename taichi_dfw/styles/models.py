@@ -123,6 +123,18 @@ class Series(LifecycleModelMixin, TimeStampedModel):
         memCount = self.seriesMembers.count()
         return memCount
 
+    @property
+    def activeMembers(self):
+        aM = self.seriesMembers.filter(active=True)
+        aM = aM.filter(leader=False)
+        return aM
+
+    @property
+    def activeLeaders(self):
+        aM = self.seriesMembers.filter(active=True)
+        aM = aM.filter(leader=True)
+        return aM
+
     @hook(BEFORE_SAVE, when="title", has_changed=True)
     def build_slug(self):
         newslug = slugify(self.title)
@@ -158,6 +170,19 @@ class Members(models.Model):
     leader = models.BooleanField(default=False)
     primary = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+    LEVEL_CHOICES = (
+        ("beginner", "No experience, just starting out"),
+        ("novice", "Learning the basics"),
+        ("experienced", "Learning the details, able to teach"),
+        ("expert", "Able to do the forms solo and lead"),
+        ("master", "Acknowledged expert on all of the forms"),
+    )
+    level = models.CharField(
+        max_length=12,
+        choices=LEVEL_CHOICES,
+        default="beginner",
+        help_text="The level of knowledge of the member in this form",
+    )
     since = models.DateField(auto_now_add=True)
     last_meeting = models.DateField("Last meeting attended", null=True, blank=True)
     paid_through = models.DateField("Paid up through", null=True, blank=True)

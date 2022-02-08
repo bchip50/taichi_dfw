@@ -44,15 +44,21 @@
        {% endfor %}
       </ul>
     {% endif %}
-    {% if object.resources %}
-      <p>Resources:</p>
+    {% if object.futureMeetings %}
+      <p>Upcoming meetings</p>
       <ul>
-        {% for res in object.resources.all %}
-          <li>{{ res.link_type }}: <a href="{{ res.link }}" target="_blank" rel="noopener noreferrer">
-            {{ res.title }}</a></li>
-       {% endfor %}
-      </ul>
+        {% for meet in object.futureMeetings %}
+          <li>
+            <a href=" {% url "styles:meeting-detail" meet.id %}" > {{ meet.location.title }} </a>
+            {% if meet.room %}
+            <span >In room {{ meet.room }}</span>
+            {% endif %}
+            <p>at {{ meet.start }} on {{ meet.day }}</p>
+          </li>
+        {% endfor %}
     {% endif %}
+      </ul>
+
   </div>
 </div>
 <!-- End Action buttons -->

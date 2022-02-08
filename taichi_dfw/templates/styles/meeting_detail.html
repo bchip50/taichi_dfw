@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Meeting: {{ object.series.style.title }} : {{ object.series.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="">
+    <h2>{{ object.series.title }}</h2>
+    {% if object.location %}
+      <p>{{ object.location.title }}</p>
+    {% endif %}
+    {% if object.room %}
+      <p>This meeting is in room {{ object.room }}</p>
+    {% endif %}
+    {% if object.day %}
+      <p>Meeting at {{ object.start }} for {{ object.length }} minutes on {{ object.day }}</p>
+    {% endif %}
+    {% if object.leader %}
+        <p>The meeting organizer or leader is {{ object.leader.member.name }}.
+    {% endif %}
+    {% if object.meetingAttendees %}
+      <p>{{ object.meetingAttendees.count }}Members attended:</p>
+      <ul>
+        {% for mbr in object.meetingRoll %}
+          <li>
+            <span >{{ mbr.member.name}}</span>
+            {% if  mbr.last_meeting %}
+              <span>Last Meeting: {{ mbr.last_meeting }}</span>
+            {% endif %}
+          </li>
+       {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+<!-- End Action buttons -->
+
+{% endblock content %}

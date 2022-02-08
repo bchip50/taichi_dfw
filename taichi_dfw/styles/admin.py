@@ -93,6 +93,17 @@ class SeriesAdmin(admin.ModelAdmin):
     ]
 
 
+class MeetingLeadersInLine(admin.TabularInline):
+    model = Members
+    min_num = 0
+
+
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ["series", "day"]
+    list_display = [
+        "series",
+        "day",
+        "start",
+        "length",
+        "leader",
+    ]

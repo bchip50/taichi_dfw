@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.text import slugify
 from django_lifecycle import BEFORE_SAVE, LifecycleModelMixin, hook
 from model_utils.models import TimeStampedModel
@@ -135,6 +136,11 @@ class Series(LifecycleModelMixin, TimeStampedModel):
         aM = aM.filter(leader=True)
         return aM
 
+    @property
+    def futureMeetings(self):
+        fM = self.seriesMeetings.filter(day__gte=timezone.now())[:3]
+        return fM
+
     @hook(BEFORE_SAVE, when="title", has_changed=True)
     def build_slug(self):
         newslug = slugify(self.title)
@@ -228,6 +234,11 @@ class Meeting(LifecycleModelMixin, TimeStampedModel):
 
     def __str__(self) -> str:
         return f"{self.series.title} on {self.day:%m/%d/%Y}"
+
+    @property
+    def meetingAttendees(self):
+        mA = self.meetingRoll.filter(present=True)
+        return mA
 
     class Meta:
         verbose_name = "meeting"

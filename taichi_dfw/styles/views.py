@@ -1,4 +1,6 @@
 # from django.shortcuts import render
+# from json import dumps
+
 from django.views.generic import DetailView, ListView
 
 from .models import (  # SeriesResource, Style, StyleResource,; Members,
@@ -6,6 +8,8 @@ from .models import (  # SeriesResource, Style, StyleResource,; Members,
     Series,
     Style,
 )
+
+# from taichi_dfw.locations.models import Location
 
 
 class StyleListView(ListView):
@@ -39,7 +43,16 @@ class SeriesDetailView(DetailView):
 series_detail_view = SeriesDetailView.as_view()
 
 
-class MeetingDetailView(DetailView):
+class MeetingSiteMixin:
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        meet = kwargs["object"]
+        context["meetGeo"] = meet.location.geolocation
+        context["meetTitle"] = meet.location.title
+        return context
+
+
+class MeetingDetailView(MeetingSiteMixin, DetailView):
     model = Meeting
 
 

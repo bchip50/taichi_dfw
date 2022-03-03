@@ -9,6 +9,7 @@
     <h2>{{ object.series.title }}</h2>
     {% if object.location %}
       <p>{{ object.location.title }}</p>
+      <div id="map"></div>
     {% endif %}
     {% if object.room %}
       <p>This meeting is in room {{ object.room }}</p>
@@ -37,3 +38,25 @@
 <!-- End Action buttons -->
 
 {% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+    <script>
+    // Show the map on this page with markers
+    function initMap() {
+      // The location of DFW Metroplex
+      const meetingSite = new google.maps.LatLng({{meetGeo.lat}},{{meetGeo.lon}});
+      // The map, centered at Uluru
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 17,
+        center: meetingSite,
+      });
+      // The marker, positioned at Uluru
+      const marker = new google.maps.Marker({
+        position: meetingSite,
+        map: map,
+        title: "{{ meetTitle }}",
+      });
+    }
+  </script>
+{% endblock javascript %}

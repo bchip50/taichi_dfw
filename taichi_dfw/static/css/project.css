@@ -11,3 +11,22 @@
   background-color: #f2dede;
   border-color: #eed3d7;
 }
+
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 80%;
+  /* The width is the width of the web page */
+}
+
+#id_cell_0, #id_phone_0 {
+  width: 20%;
+}
+#id_phone_1, #id_cell_1 {
+  display: none;
+}
+
+.phone-field-ext {
+  display: none;
+}

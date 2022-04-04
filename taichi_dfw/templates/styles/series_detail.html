@@ -24,7 +24,7 @@
       <ul>
         {% for ldr in object.activeLeaders %}
           <li class="row" >
-            <span class="col-sm-3">{{ ldr.member.name}}</span>
+            <a href=" {% url "users:detail" ldr.member.username %}" class="col-sm-3">{{ ldr.member.name}}</a>
             <span class="col-sm-3">{{ ldr.member.email}}</span>
             <span class="col-sm-6"> since {{ ldr.since}}</span>
           </li>
@@ -36,7 +36,7 @@
       <ul>
         {% for mbr in object.activeMembers %}
           <li>
-            <span >{{ mbr.member.name}}</span>
+            <a href=" {% url "users:detail" mbr.member.username %}" >{{ mbr.member.name}}</a>
             {% if  mbr.last_meeting %}
               <span>Last Meeting: {{ mbr.last_meeting }}</span>
             {% endif %}

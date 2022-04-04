@@ -189,6 +189,22 @@ class Members(models.Model):
         default="beginner",
         help_text="The level of knowledge of the member in this form",
     )
+    STATUS_CHOICES = (
+        ("applicant", "Applied to leader for membership"),
+        ("denied", "Application rejected by leader"),
+        ("accepted", "Application accepted by leader"),
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="accepted",
+        help_text="Internal flag used during membership applicaiton process.",
+    )
+    application = models.TextField(
+        "application",
+        default="Open sessions, no application required.",
+        help_text="Entered by applicant as message to the leader.",
+    )
     since = models.DateField(auto_now_add=True)
     last_meeting = models.DateField("Last meeting attended", null=True, blank=True)
     paid_through = models.DateField("Paid up through", null=True, blank=True)

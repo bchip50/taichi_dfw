@@ -13,7 +13,44 @@
       {% if object.name %}
         <p>{{ object.name }}</p>
       {% endif %}
-    </div>
+
+      {% if object.phone %}
+        <p>Contact phone: {{ object.phone }}</p>
+      {% endif %}
+
+      {% if object.cell %}
+        <p>Cell phone used to receive text notifications: {{ object.cell }}</p>
+      {% endif %}
+
+      {% if object.city %}
+        <p>City of residence or preferred city for meetings: {{ object.city }}</p>
+      {% endif %}
+
+      {% if object.leaderFlag %}
+        <p>Designated leader who can create meetings and classes,
+        add participants and students,
+        select locations for meetings and
+        designate other users as leaders.</p>
+      {% endif %}
+
+      {% if object.gmail %}
+        <p>Google mail address used to log in to the site. {{ object.gmail }}</p>
+      {% endif %}
+
+      {% if object.favorite_style %}
+        <p>My preferred TaiChi style is: {{ object.favorite_style }}</p>
+      {% endif %}
+
+      <h3>TaiChi Biography and photo.</h3>
+      {% if object.biophoto %}
+        <p class="rounded float-right border border-primary">Photo here</p>
+      {% endif %}
+      {% if object.bio %}
+        <p>{{ object.bio }}</p>
+      {% else %}
+        <p>No experience reported.</p>
+      {% endif %}
+   </div>
   </div>
 
 {% if object == request.user %}

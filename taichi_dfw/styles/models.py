@@ -80,7 +80,11 @@ class Series(LifecycleModelMixin, TimeStampedModel):
     style = models.ForeignKey(
         Style, on_delete=models.CASCADE, related_name="seriesStyle"
     )
-    description = models.TextField(verbose_name="Description", blank=True)
+    description = models.TextField(
+        verbose_name="Description",
+        blank=True,
+        help_text="Introduce your class or club. Be sure to mention qualifications and cost.",
+    )
     VISIBILITY_CHOICES = (
         ("public", "Show to public"),
         ("private", "Do not show to public"),
@@ -107,7 +111,7 @@ class Series(LifecycleModelMixin, TimeStampedModel):
     tags = TaggableManager(
         "Tags to be searched to find your series",
         blank=True,
-        help_text="Enter single word or 'quoted strings' to be used to find your series.",
+        help_text="Enter single word or 'quoted strings' to be used to find your class or club.",
     )
 
     class Meta:

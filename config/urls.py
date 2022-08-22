@@ -13,11 +13,11 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("users/", include("taichi_dfw.users.urls", namespace="users")),
+    path("users/", include("taichi_dfw.users.urls")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path("styles/", include("taichi_dfw.styles.urls", namespace="styles")),
-    path("resources/", include("taichi_dfw.resources.urls", namespace="resources")),
+    path("styles/", include("taichi_dfw.styles.urls")),
+    path("resources/", include("taichi_dfw.resources.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -50,6 +50,23 @@
       {% else %}
         <p>No experience reported.</p>
       {% endif %}
+
+      <h4>Sessions or Classes in which I have membership.</h4>
+      {% if seriesList %}
+        {% for ser in seriesList %}
+          {% url 'styles:series-detail' ser.series.slug as theSeries %}
+          {% if theSeries %}
+          <li class="col-sm-9"><a href="{{ theSeries }}" >
+            {{ ser.series.title }}</a>
+          {% else %}
+          <li>{{ ser.series.title }}</li>
+          {% endif %}
+          {% if ser.series.title %}
+            : {{ ser.series.description }}
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
    </div>
   </div>
 

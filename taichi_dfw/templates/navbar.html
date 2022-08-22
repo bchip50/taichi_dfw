@@ -1,6 +1,6 @@
 {% load static i18n %}
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,9 +15,9 @@
       <li class="navbar-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Styles</a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
           {% for style in style_menu %}
-            <a class="nav-link bg-dark" href="{% url 'styles:detail' style.slug %}">
+            <a class="nav-link bg-white" href="{% url 'styles:detail' style.slug %}">
               {{ style.title }}
             </a>
           {% endfor %}
@@ -25,11 +25,11 @@
       </li>
       {% block menu_left %}
         <li class="navbar-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+          <a class="nav-link dropdown-toggle" href="#" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources (open in new tab)</a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
             {% for res in res_menu %}
-              <a class="nav-link bg-dark" href="{{ res.link }}" target="_blank">
+              <a class="nav-link bg-white" href="{{ res.link }}" target="_blank">
                   {{ res.link_type }}: {{ res.title }}
                 </a>
             {% endfor %}

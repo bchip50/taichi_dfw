@@ -120,6 +120,9 @@ class Series(LifecycleModelMixin, TimeStampedModel):
         indexes = [models.Index(fields=["style", "title"])]
         ordering = ["-visibility"]
 
+    def get_absolute_url(self):
+        return reverse("styles:series-detail", kwargs={"slug": self.slug})
+
     def __str__(self) -> str:
         return f"{self.style.title}: {self.title}"
 
@@ -251,6 +254,9 @@ class Meeting(LifecycleModelMixin, TimeStampedModel):
     leader = models.ForeignKey(
         Members, on_delete=models.SET_NULL, null=True, related_name="meetingLeader"
     )
+
+    def get_absolute_url(self):
+        return reverse("styles:meeting-detail", kwargs={"slug": self.slug})
 
     def __str__(self) -> str:
         return f"{self.series.title} on {self.day:%m/%d/%Y}"
